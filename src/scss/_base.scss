@@ -1,0 +1,32 @@
+$large_width: 960px;
+$header_height: 70px;
+$header_bg_color: #1AC3F9;
+$body_bg_color: #eee;
+
+body {
+	margin: 0;
+	background: $body_bg_color;
+	div, input, span, button {
+		box-sizing: border-box;
+	}
+	h3 {
+		margin: 0;
+	}
+	input, button {
+		outline: none;
+	}
+}
+
+header {
+	width: 100%;
+	margin: 0;
+	height: $header_height;
+	background: $header_bg_color;
+}
+
+
+main {
+	max-width: $large_width;
+	width: 90vw;
+	margin: 0 auto;
+}

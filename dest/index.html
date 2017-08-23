@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Page url analysis</title>
+	<link type="text/css" rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<header></header>
+<main>
+	<div id="analysis-creator-container"></div>
+<script id="page-analysis-creator" type="x-tmpl-mustache">
+	<div class="analysis-creator">
+		<div class="analysis-creator__heading">
+			<h3 class="analysis-creator__heading-text">{{heading}}</h3>
+		</div>
+		<form id="create-analysis" name="create-analysis" class="analysis-creator__form">
+			<div class="form-field__input form-field">
+				<label class="analysis-creator__form-label">{{formLabel}}</label>
+				<input class="analysis-creator__form-pageurl" id="pageurl" name="pageurl" type="text" placeholder="http://example.com, https: and http: are important!"/>
+			</div>
+			<div class="form-field__button form-field">
+				<button id="pageurl-submit" class="anaylsis-creator__form-submit">{{buttonText}}</button>
+			</div>
+		</form>
+	</div>
+</script>
+<div id="analysis-report-container">
+</div>
+<script id="page-analysis-report" type="x-tmpl-mustache">
+	<div class="analysis-report">
+		<div class="analysis-report__heading">
+			<h3 class="analysis-report__heading-text">Analysis report</h3>
+		</div>
+		<div class="analysis-report_list">
+			{{#succeed}}
+			<div class="analysis-report__doctype list-item">
+				<span class="analysis-report__item item-heading">{{report.doctype.heading}}</span>
+				<span class="analysis-report__item item-content">{{report.doctype.content}}</span>
+			</div>
+			<div class="analysis-report__pagetitle list-item">
+				<span class="analysis-report__item item-heading">{{report.pagetitle.heading}}</span>
+				<span class="analysis-report__item item-content">{{report.pagetitle.content}}</span>
+			</div>
+			<div class="analysis-report__headings list-item">
+				<span class="analysis-report__item item-heading">{{report.headings.heading}}</span>
+				<span class="analysis-report__item item-content">
+					{{#report.headings.content}}
+						<span class="analysis-report__content-item">{{level}}: {{count}}</span>
+					{{/report.headings.content}}
+					{{^report.headings.content}}
+						{{report.headings.nofound}}
+					{{/report.headings.content}}
+				</span>
+			</div>
+			<div class="analysis-report__links list-item">
+				<span class="analysis-report__item item-heading">{{report.links.heading}}</span>
+				<span class="analysis-report__item item-content">
+					{{#report.links.content}}
+						<span class="analysis-report__content-item">
+							<span class="analysis-report__links-total">{{type}}: {{count}}</span>
+							{{#brokenlinks}}
+							<span class="analysis-report__links-inaccessible">Inaccessible links: {{brokenlinks}}</span>
+							{{/brokenlinks}}
+						</span>
+					{{/report.links.content}}
+					{{^report.links.content}}
+						{{report.links.nofound}}
+					{{/report.links.content}}
+				</span>
+			</div>
+			<div class="analysis-report__loginform list-item">
+				<span class="analysis-report__item item-heading">{{report.loginform.heading}}</span>
+				<span class="analysis-report__item item-content">
+					<span class="analysis-report__loginform-message">{{report.loginform.foundmessage}}</span>
+				</span>
+			</div>
+			{{/succeed}}
+			{{^succeed}}
+			<div class="analysis-report__error">
+				<span class="analysis-report__error-code">Status: {{report.statusCode}}</span>
+				<span class="analysis-report__error-msg">Error: {{report.errormessage}}</span>
+			</div>
+			{{/succeed}}
+		</div>
+	</div>
+</script>
+</main>
+<footer>
+	<script src="/static/lib/mustache.min.js"></script>
+	<script src="/static/bundle.js"></script>
+</footer>
+</body>
+</html>

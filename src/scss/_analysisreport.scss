@@ -1,0 +1,56 @@
+$list_item_bg_color: #E9F8F8;
+$item_heading_height: 35px;
+$border_color: #DFE772;
+$warning_color: red;
+$error_text_color: red;
+.analysis-report {
+	@extend %basic_block_layout;
+    .analysis-report__heading {
+        height: 50px;
+    }
+    .list-item {
+        background: $list_item_bg_color;
+        margin: 0 0 10px 0;
+        .analysis-report__item {
+            width: 100%;
+            display: inline-block;
+            padding: 10px 5px;
+        }
+        .item-heading {
+        	min-height: $item_heading_height;
+
+            border-bottom: 1px solid $border_color;
+        }
+        .item-content {
+            min-height: $item_heading_height * 2;
+        }
+    }
+    .analysis-report__headings {
+        .analysis-report__content-item {
+            display: inline-block;
+            width: 70px;
+        }
+    }
+    .analysis-report__links {
+        .analysis-report__content-item {
+            display: inline-block;
+            width: 180px;
+        }
+    }
+    .analysis-report__links-inaccessible {
+        color: $warning_color;
+    }
+    .analysis-report__links-total,
+    .analysis-report__links-inaccessible {
+    	display: inline-block;
+    	width: 100%;
+    }
+	.analysis-report__error {
+		color: $error_text_color;
+	}
+	.analysis-report__error-code,
+	.analysis-report__error-msg {
+		width: 100%;
+		display: inline-block;
+	}
+}
